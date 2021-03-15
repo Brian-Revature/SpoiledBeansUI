@@ -18,7 +18,7 @@ function grabUsername() {
         password:loginInfo.item(1).value
     };
 
-    fetch('http://localhost:5000/auth/login', {
+    fetch(url, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(user)
@@ -37,7 +37,7 @@ function redirect(){
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
 
-    fetch('http://localhost:5000/users', {
+    fetch(url, {
         method: 'GET'
     })
         .then(response => response.json())
