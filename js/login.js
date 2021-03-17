@@ -1,5 +1,6 @@
 window.onload = () => {
     document.getElementById("login-button").addEventListener('click', grabUsername);
+    document.getElementById("register-button").addEventListener('click', register);
 }
 
 import {state} from './state.js';
@@ -25,7 +26,7 @@ function grabUsername() {
         body: JSON.stringify(user)
     })
         .then(response => {
-            state.token = response.headers.get("spoiledBeans-token");
+            window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
     })
         .then(() => redirect());
 }
@@ -46,4 +47,8 @@ function redirect(){
         .then(result => {
             console.log('Success:', result);
     });
+}
+
+function register(){
+    window.location.href = "/SpoiledBeansUI/html/register.html";
 }
