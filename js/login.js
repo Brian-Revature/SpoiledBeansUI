@@ -1,8 +1,10 @@
 window.onload = () => {
-    document.getElementById("login-button").addEventListener("click", grabUsername);
+    document.getElementById("login-button").addEventListener('click', grabUsername);
+    document.getElementById("register-button").addEventListener('click', register);
 }
 
 function grabUsername() {
+
     let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/auth/login';
     let headers = new Headers();
 
@@ -10,24 +12,21 @@ function grabUsername() {
     headers.append('Accept', 'application/json');
 
     let loginInfo = document.querySelectorAll("input");
-    console.log(loginInfo.item(0).value);
-    console.log(loginInfo.item(1).value);
 
     let user = {
         username:loginInfo.item(0).value,
         password:loginInfo.item(1).value
     };
 
-    fetch('http://localhost:5000/auth/login', {
+    fetch(url, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(user)
     })
-        .then(response => response.json())
-        .then(result => {
-            console.log('Success:', result);
-            redirect();
-    });
+        .then(response => {
+            window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
+    })
+        .then(() => redirect());
 }
 
 function redirect(){
@@ -36,12 +35,18 @@ function redirect(){
 
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
+    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
 
-    fetch('http://localhost:5000/users', {
-        method: 'GET'
+    fetch(url, {
+        method: 'GET',
+        headers: headers
     })
         .then(response => response.json())
         .then(result => {
             console.log('Success:', result);
     });
+}
+
+function register(){
+    window.location.href = "/SpoiledBeansUI/html/register.html";
 }
