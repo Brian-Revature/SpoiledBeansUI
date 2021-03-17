@@ -67,7 +67,19 @@ done_button.addEventListener("click", function(){
         // console.log(backupArray[i]);
 
         // do something here to go to endpoint that updates database
-        
+        let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/users/update';
+        let headers = new Headers();
+    
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('spoiledBeans-token', window.localStorage.getItem('token'));    
+    
+        fetch(url,{
+            method: 'PUT',
+            headers: headers
+        })
+        .then(Response => Response.json())
+        .then(result => { })
 
     }
 
@@ -84,12 +96,4 @@ cancel_button.addEventListener("click", function(){
     }
 })
 
-// function getBackup(){
-//     let backupArray;
-//     return function(){
-//         if(backupArray.length == 0){
-//             backupArray = new Array();
-//         }
-//         return backupArray;
-//     };
-// }
+
