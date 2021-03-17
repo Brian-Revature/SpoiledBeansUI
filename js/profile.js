@@ -13,7 +13,7 @@ window.onload = () => {
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
-    let role = document.getElementById('role');
+    let role = document.getElementById('userRole');
 
 
     fetch(url,{
@@ -26,6 +26,18 @@ window.onload = () => {
             if (result.hasOwnProperty.call(result, key)) {
                 const element = result[key];
                 console.log(element);
+                if(key=="userRole"){
+                    role.textContent = element;
+                    continue;
+                }
+                if(key=="id"){
+                    continue;
+                }
+                if(key==undefined){
+                    element = "";
+                }
+                fields[key].value = element;
+                console.log(fields[key].value);
             }
         }
     })

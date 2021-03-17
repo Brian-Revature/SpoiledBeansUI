@@ -30,21 +30,23 @@ function grabUsername() {
 }
 
 function redirect(){
-    let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/users';
-    let headers = new Headers();
+    // let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/users';
+    // let headers = new Headers();
 
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+    // headers.append('Content-Type', 'application/json');
+    // headers.append('Accept', 'application/json');
+    // headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
 
-    fetch(url, {
-        method: 'GET',
-        headers: headers
-    })
-        .then(response => response.json())
-        .then(result => {
-            console.log('Success:', result);
-    });
+    // fetch(url, {
+    //     method: 'GET',
+    //     headers: headers
+    // })
+    //     .then(response => response.json())
+    //     .then(result => {
+    //         console.log('Success:', result);
+    // });
+
+    window.location.href = "./ProfilePage.html";
 }
 
 function register(){
