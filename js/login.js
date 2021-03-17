@@ -3,8 +3,6 @@ window.onload = () => {
     document.getElementById("register-button").addEventListener('click', register);
 }
 
-import {state} from './state.js';
-
 function grabUsername() {
 
     let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/auth/login';
@@ -37,7 +35,7 @@ function redirect(){
 
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
-    headers.append('spoiledBeans-token', state.token);
+    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
 
     fetch(url, {
         method: 'GET',
