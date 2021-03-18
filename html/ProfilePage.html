@@ -2,56 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/profile.css">
     <title>ProfilePage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../css/profile.css">
+
 </head>
 <body>
 
-<div id = "header"></div>
-<div id = "userInfo">
+<div id = "header">
+<main class="form-signin">
 
-    <label for="username">username</label>
-    <input class = "Edit" type="text" id="username" name="username" placeholder="sample username" readonly>
-    <br>
-    <label for="password">password</label>
-    <input class = "Edit" type="password" id="password" name="password" placeholder="sample password" readonly>
-    <br>
-    <label for="email">Email</label>
-    <input class = "Edit" type="email" id="email" name="email" placeholder="sample email" readonly>
-    <br>
-    <label for="firstName">First Name</label>
-    <input class = "Edit" type="text" id="firstName" name="firstName" placeholder="sample first name" readonly>
-    <br>
-    <label for="lastName">Last Name</label>
-    <input class = "Edit" type="text" id="lastName" name="lastName" placeholder="sample last name" readonly>    
-    <br>
-    <label for="bio">Bio</label>
-    <br>
-    <textarea class = "Edit" name="bio" id="bio" cols="30" rows="10" readonly>enter text here</textarea>
+    <label for="username"></label>
+    <h5>Username</h5>
+    <input class="form-control" type="text" id="username" name="username" placeholder="sample username" readonly>
+
+    <label for="password"></label>
+    <h5>Password</h5>
+    <input class = "form-control" type="password" id="password" name="password" placeholder="sample password" readonly>
+
+    <label for="email"></label>
+    <h5>Email</h5>
+    <input class = "form-control" type="email" id="email" name="email" placeholder="sample email" readonly>
+
+    <label for="firstName"></label>
+    <h5>First Name</h5>
+    <input class = "form-control" type="text" id="firstName" name="firstName" placeholder="sample first name" readonly>
+
+    <label for="lastName"></label>
+    <h5>Last Name</h5>
+    <input class = "form-control" type="text" id="lastName" name="lastName" placeholder="sample last name" readonly>
+
+    <label for="bio"></label>
+    <h5>Bio</h5>
+    <textarea class = "form-control" name="bio" id="bio" rows="5" placeholder="enter text here" readonly></textarea>
     <!-- <input class = "Edit" type="text" id="Bio" name="Bio" placeholder="sample bio" readonly> -->
+
+    <h5>Role</h5>
+    <p class="h5 fw-normal" id= "userRole">user role placeholder</p>
     <br>
-    <p>Role</p>
-    <p id= "userRole">user role placeholder</p>
 
-    <!-- <p>password</p>
-    <p class = "Edit">sample text</p>
-    <p>First Name</p>
-    <p class = "Edit">sample text</p>
-    <p>Last Name</p>
-    <p class = "Edit">sample text</p>
-    <p>Email</p>
-    <p class = "Edit">sample text</p>
-    <p>Bio</p>
-    <p class = "Edit">sample text</p>
-    <p>Role</p>
-    <p id= "role">user role placeholder</p> -->
-    
-    
-    
+    <button type="submit" class="btn" id="begin-edit">Edit</button>
+    <button type="submit" class="btn" id="end-edit">Done</button>
+    <button type="submit" class="btn" id ="cancel">Cancel</button>
 
-    <button type="submit" id="begin-edit">Edit</button>
-    <button type="submit" id="end-edit">Done</button>
-    <button type="submit" id = "cancel">Cancel</button>
+    <div>
+        <button type="submit" class="btn" id ="home">Home</button>
+    </div>
+</main>
 </div>
     <script src="../js/profile.js"></script>
 </body>

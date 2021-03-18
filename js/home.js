@@ -2,6 +2,7 @@
 window.onload = () => {
     //window.localStorage.getItem('token')
     console.log(window.localStorage.getItem('token'));
+    document.getElementById("profile-page-redirect").addEventListener('click', profilePage);
 
     getMovies();
 }
@@ -118,4 +119,10 @@ function addNewMovie(){
 
 }
 document.getElementById("add-movie").addEventListener('click', addNewMovie);
+
+function profilePage(){
+    if(localStorage.getItem("token")){
+        window.location.href = "./ProfilePage.html";
+    }
+}
 

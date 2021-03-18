@@ -1,7 +1,8 @@
-let fields = document.getElementsByClassName("Edit");
+let fields = document.getElementsByClassName("form-control");
 let edit_button = document.getElementById("begin-edit");
 let done_button = document.getElementById("end-edit");
 let cancel_button = document.getElementById("cancel");
+let nav_home = document.getElementById("home");
 
 // gross global variable but needed to save values
 // at least for now
@@ -52,8 +53,8 @@ let backupArray = new Array();
 edit_button.addEventListener("click", function(){
     for(let i = 0; i < fields.length; i++){
         fields[i].readOnly = false;
-        fields[i].style.backgroundColor = "black";
-        fields[i].style.color = "white";
+        fields[i].style.backgroundColor = "light-grey";
+        fields[i].style.color = "black";
         backupArray[i] = fields[i].value;
         // console.log(backupArray[i]);
     }
@@ -62,41 +63,54 @@ edit_button.addEventListener("click", function(){
 
 done_button.addEventListener("click", function(){
 
-    for(let i = 0; i < fields.length; i++){
+    for(let i = 0; i < fields.length; i++) {
         fields[i].readOnly = true;
         fields[i].style.backgroundColor = "white";
         fields[i].style.color = "black";
         backupArray[i] = fields[i].value;
         // console.log(backupArray[i]);
-
-        // do something here to go to endpoint that updates database
-        let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/users/update';
-        let headers = new Headers();
-    
-        headers.append('Content-Type', 'application/json');
-        headers.append('Accept', 'application/json');
-        headers.append('spoiledBeans-token', window.localStorage.getItem('token'));    
-    
-        fetch(url,{
-            method: 'PUT',
-            headers: headers
-        })
-        .then(Response => Response.json())
-        .then(result => { })
-
     }
+
+    // do something here to go to endpoint that updates database
+    let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/users/update';
+    let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+
+    let user = {
+        username: backupArray[0],
+        password: backupArray[1],
+        email: backupArray[2],
+        firstName: backupArray[3],
+        lastName: backupArray[4],
+        bio: backupArray[5]
+    };
+
+    fetch(url,{
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify(user)
+    })
+    .then(Response => Response.json());
 
     console.log(backupArray);
 })
 
 cancel_button.addEventListener("click", function(){
     for(let i = 0; i < fields.length; i++){
-        fields[i].value = backupArray[i];
+        fields[i].readOnly = true;
+        // fields[i].value = backupArray[i];
         fields[i].style.backgroundColor = "white";
         fields[i].style.color = "black";
-        fields[i].contentEditable = 'false';
+        // fields[i].contentEditable = 'false';
 
     }
 })
+
+nav_home.addEventListener('click', function(){
+    window.location.href = "../index.html";
+});
 
 
