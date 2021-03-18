@@ -32,10 +32,10 @@ function grabUsername() {
 }
 
 function redirect(){
-    document.location.href="/SpoiledBeansUI/html/home.html";
+    document.location.href="../html/home.html";
     //window.location.href = "./ProfilePage.html";
 }
 
 function register(){
-    window.location.href = "/SpoiledBeansUI/html/register.html";
+    window.location.href = "../html/register.html";
 }
