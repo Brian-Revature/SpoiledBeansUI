@@ -2,10 +2,9 @@
 
 #userInfo{
     
-    margin: 5rem 10rem auto 10rem;
-    border: solid black;   
+    margin: 5rem;
+    border: solid black;
     text-align: center;
-    width: 100%;
 
 }
 
@@ -17,5 +16,5 @@ input{
 }
 
 body{
-    width: 100%;
+    max-width: 100%;
 }
