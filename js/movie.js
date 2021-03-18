@@ -3,7 +3,7 @@ window.onload = () => {
     console.log(window.localStorage.getItem('movie'));
     getAllMovies();
     getReviews();
-    getMyReviews();
+    //getMyReviews();
 }
 
 //Get all movies from DB passes to drop down menu
@@ -447,7 +447,7 @@ function addUpdateReview(){
                 //window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
 
         })
-            //.then(() => console.log("Updated review"));
+            .then(() => getReviews());
 
 }
 
