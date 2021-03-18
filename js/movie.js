@@ -315,7 +315,7 @@ function addReviewsToTable(data) {
 
 
             //Anchor for movie name
-            // userAnchor.href = './home.html';
+            // userAnchor.href = './index.html';
             // userAnchor.id = userArr[i];
             // //Method to get name of clicked user
             // userAnchor.addEventListener("click",() =>  grabUser(event.srcElement.id));
@@ -385,7 +385,7 @@ function addReviewsToMyTable(data) {
 
 
             //Anchor for movie name
-            userAnchor.href = './home.html';
+            userAnchor.href = './index.html';
             userAnchor.id = userArr[i];
             //Method to get name of clicked user
             userAnchor.addEventListener("click",() =>  grabUser(event.srcElement.id));

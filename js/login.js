@@ -32,7 +32,7 @@ function grabUsername() {
 }
 
 function redirect(){
-    document.location.href="../html/home.html";
+    document.location.href="../index.html";
     //window.location.href = "./ProfilePage.html";
 }
 

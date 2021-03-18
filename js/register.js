@@ -26,5 +26,5 @@ function registerUser(){
 }
 
 function redirect(){
-    window.location.href = "/SpoiledBeansUI/index.html";
+    window.location.href = "../html/login.html";
 }
