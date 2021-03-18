@@ -72,7 +72,6 @@ done_button.addEventListener("click", function(){
         headers.append('Accept', 'application/json');
         headers.append('spoiledBeans-token', window.localStorage.getItem('token'));    
         
-        console.log(backupArray);
         let userProfile = {
             username: backupArray[0],
             password: backupArray[1],
