@@ -22,7 +22,13 @@ function registerUser(){
         headers: headers,
         body: JSON.stringify(newUser)
     })
-        .then(() => redirect());
+        .then(response => {
+            if(response.status < 400 && response.status >= 200){
+                redirect();
+            }else{
+                window.alert("User already in use");
+            }
+        });
 }
 
 function redirect(){
