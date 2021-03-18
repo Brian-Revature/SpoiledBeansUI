@@ -107,10 +107,12 @@ function addNewMovie(){
                 .then(response => {
                 console.log("Added movie");
                 console.log(response);
+                document.getElementById("movie-table-body").innerHTML="";
                     //state.token = response.headers.get("spoiledBeans-token");
                     //window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
 
             })
+
                 .then(() => getMovies());
 
 }
