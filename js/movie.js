@@ -306,7 +306,8 @@ function addReviewsToTable(data) {
 
             let row1 = document.createElement('tr')
             //User will be an anchor to user's profile
-            let userAnchor = document.createElement('a')
+            //let userAnchor = document.createElement('a')
+            let cellUser = document.createElement('td');
             let cellMovie = document.createElement('td');
             let cellRating = document.createElement('td');
             let cellReview = document.createElement('td');
@@ -314,20 +315,21 @@ function addReviewsToTable(data) {
 
 
             //Anchor for movie name
-            userAnchor.href = './home.html';
-            userAnchor.id = userArr[i];
-            //Method to get name of clicked user
-            userAnchor.addEventListener("click",() =>  grabUser(event.srcElement.id));
-
-            //Populating with values
-            userAnchor.innerText = userArr[i];
+            // userAnchor.href = './home.html';
+            // userAnchor.id = userArr[i];
+            // //Method to get name of clicked user
+            // userAnchor.addEventListener("click",() =>  grabUser(event.srcElement.id));
+            //
+            // //Populating with values
+            // userAnchor.innerText = userArr[i];
+            cellUser.innerText = userArr[i];
             cellMovie.innerText = movieName;
             cellRating.innerText = reviewInfoArr[i].rating;
             cellReview.innerText = reviewInfoArr[i].review;
             cellReviewTime.innerText = reviewInfoArr[i].time.substring(0,10);
 
             //Appending to html
-            row1.appendChild(userAnchor);
+            row1.appendChild(cellUser);
             row1.appendChild(cellMovie);
             row1.appendChild(cellRating);
             row1.appendChild(cellReview);
