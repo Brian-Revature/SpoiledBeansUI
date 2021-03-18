@@ -24,10 +24,13 @@ window.onload = () => {
     .then(result => {
         for (const key in result) {
             if (result.hasOwnProperty.call(result, key)) {
-                const element = result[key];
+                let element = result[key];
                 console.log(element);
                 if(key=="userRole"){
                     role.textContent = element;
+                    continue;
+                }
+                if(key=="password"){
                     continue;
                 }
                 if(key=="id"){
