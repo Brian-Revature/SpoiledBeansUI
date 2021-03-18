@@ -2,7 +2,7 @@ let fields = document.getElementsByClassName("Edit");
 let edit_button = document.getElementById("begin-edit");
 let done_button = document.getElementById("end-edit");
 let cancel_button = document.getElementById("cancel");
-
+let role = document.getElementById('userRole');
 // gross global variable but needed to save values
 // at least for now
 
@@ -13,7 +13,7 @@ window.onload = () => {
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
-    let role = document.getElementById('userRole');
+
 
 
     fetch(url,{
@@ -54,18 +54,16 @@ edit_button.addEventListener("click", function(){
         backupArray[i] = fields[i].value;
         // console.log(backupArray[i]);
     }
-    console.log(backupArray);
+    //console.log(backupArray);
 })
 
 done_button.addEventListener("click", function(){
 
     for(let i = 0; i < fields.length; i++){
         fields[i].readOnly = true;
-        fields[i].style.backgroundColor = "white";
-        fields[i].style.color = "black";
         backupArray[i] = fields[i].value;
         // console.log(backupArray[i]);
-
+    }
         // do something here to go to endpoint that updates database
         let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/users/update';
         let headers = new Headers();
@@ -73,16 +71,30 @@ done_button.addEventListener("click", function(){
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
         headers.append('spoiledBeans-token', window.localStorage.getItem('token'));    
-    
-        fetch(url,{
+        
+        console.log(backupArray);
+        let userProfile = {
+            username: backupArray[0],
+            password: backupArray[1],
+            email: backupArray[2],
+            firstName: backupArray[3],
+            lastName: backupArray[4],
+            bio: backupArray[5],
+            Role: role.textContent
+        };
+        console.log("here is the user profile");
+        console.log(userProfile);
+        fetch(url, {
             method: 'PUT',
-            headers: headers
+            headers: headers,
+            body: JSON.stringify(userProfile)
         })
-        .then(Response => Response.json())
-        .then(result => { })
+        .then(Response => {
+            window.localStorage.setItem('token', Response.headers.get("spoiledBeans-token"));
+        })
+        .then(() => redirect());
 
-    }
-
+        console.log("printing out my backup array but might not get here");
     console.log(backupArray);
 })
 
@@ -95,5 +107,9 @@ cancel_button.addEventListener("click", function(){
 
     }
 })
+
+function redirect(){
+    console.log("got to the redirect");
+}
 
 
