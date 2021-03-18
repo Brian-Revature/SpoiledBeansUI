@@ -28,26 +28,7 @@ function getMovies() {
 
 }
 
-function getMoviesByDate() {
 
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
-
-    let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/movies/year';
-
-     fetch(url, {
-                method: 'GET',
-                headers: headers
-            })
-                .then(response => response.json())
-                .then(result => {
-                    console.log('Success:', result);
-                    addMovie(result);
-            });
-
-}
 
 function grabMovie(clicked_id){
 
@@ -59,7 +40,6 @@ function grabMovie(clicked_id){
 function addMovie(data) {
 
         //Iteration over movies list
-        document.getElementById("movie-table-body").innerHTML="";
         data.forEach(element => {
 
         //Creating elements
@@ -138,4 +118,4 @@ function addNewMovie(){
 
 }
 document.getElementById("add-movie").addEventListener('click', addNewMovie);
-document.getElementById("sort-movie-date").addEventListener('click', getMoviesByDate);
+
