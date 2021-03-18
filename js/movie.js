@@ -445,6 +445,7 @@ function addUpdateReview(){
             .then(response => {
             console.log("Updated review");
             console.log(response);
+            document.getElementById("review-table-body").innerHTML="";
                 //state.token = response.headers.get("spoiledBeans-token");
                 //window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
 
