@@ -50,7 +50,7 @@ function addMovie(data) {
 
         //Anchor for movie name
         let movieAnchor = document.createElement('a')
-        movieAnchor.href = './movie.html';
+        movieAnchor.href = './html/movie.html';
         movieAnchor.id = element.name;
         //Get name of clicked movie
         movieAnchor.addEventListener("click",() =>  grabMovie(event.srcElement.id));
