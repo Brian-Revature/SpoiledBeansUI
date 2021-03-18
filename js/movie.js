@@ -40,9 +40,11 @@ function getReviews(){
 
         //'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/moviereviews'
         let url = new URL('http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/moviereviews')
+        //let url = new URL('http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/moviereviewsbyrating')
         url.search = new URLSearchParams({
             //Movie clicked on from home page as query param
             //name: window.localStorage.getItem('movie'));
+            //ascending: false,
             name: window.localStorage.getItem('movie')
         })
 
@@ -76,6 +78,140 @@ function getReviews(){
 //    });
 //
 //}
+
+
+function getReviewsByRatingDes(){
+
+        //Test for clearing table
+        document.getElementById("review-table-body").innerHTML="";
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+
+        let url = new URL('http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/moviereviewsbyrating')
+        url.search = new URLSearchParams({
+            //Movie clicked on from home page as query param
+            //name: window.localStorage.getItem('movie'));
+            ascending: false,
+            name: window.localStorage.getItem('movie')
+        })
+
+
+         fetch(url, {
+                    method: 'GET',
+                    headers: headers,
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Success:', result);
+                        addReviewsToTable(result);
+                });
+
+
+
+}
+
+
+function getReviewsByRatingAsc(){
+
+        //Test for clearing table
+        document.getElementById("review-table-body").innerHTML="";
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+
+        let url = new URL('http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/moviereviewsbyrating')
+        url.search = new URLSearchParams({
+            //Movie clicked on from home page as query param
+            //name: window.localStorage.getItem('movie'));
+            ascending: true,
+            name: window.localStorage.getItem('movie')
+        })
+
+
+         fetch(url, {
+                    method: 'GET',
+                    headers: headers,
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Success:', result);
+                        addReviewsToTable(result);
+                });
+
+}
+
+function getReviewsByTimeDes(){
+
+        //Test for clearing table
+        document.getElementById("review-table-body").innerHTML="";
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+
+        let url = new URL('http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/moviereviewsbytime')
+        url.search = new URLSearchParams({
+            //Movie clicked on from home page as query param
+            //name: window.localStorage.getItem('movie'));
+            ascending: false,
+            name: window.localStorage.getItem('movie')
+        })
+
+
+         fetch(url, {
+                    method: 'GET',
+                    headers: headers,
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Success:', result);
+                        addReviewsToTable(result);
+                });
+
+
+
+}
+
+
+
+function getReviewsByTimeAsc(){
+
+        //Test for clearing table
+        document.getElementById("review-table-body").innerHTML="";
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+
+        let url = new URL('http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/moviereviewsbytime')
+        url.search = new URLSearchParams({
+            //Movie clicked on from home page as query param
+            //name: window.localStorage.getItem('movie'));
+            ascending: true,
+            name: window.localStorage.getItem('movie')
+        })
+
+
+         fetch(url, {
+                    method: 'GET',
+                    headers: headers,
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Success:', result);
+                        addReviewsToTable(result);
+                });
+
+
+
+}
 
 function getMyReviews(){
 
@@ -274,3 +410,49 @@ function grabUser(clicked_id){
     window.localStorage.setItem('user', clicked_id);
     //alert(clicked_id);
 }
+
+function addUpdateReview(){
+
+    let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/addreview';
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+
+    //Review data
+    let reviewText = document.getElementById('review').value;
+    let e = document.getElementById("selectNumber");
+    let ratingNum = e.value;
+    console.log("Did the review get got?: "+ reviewText);
+
+    //let loginInfo = document.querySelectorAll("input");
+
+        let reviewDTO = {
+
+            movie:{name:window.localStorage.getItem('movie')},
+            review:{review:reviewText, rating:ratingNum}
+            //username:loginInfo.item(0).value,
+            //password:loginInfo.item(1).value
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(reviewDTO)
+        })
+            .then(response => {
+            console.log("Updated review");
+            console.log(response);
+                //state.token = response.headers.get("spoiledBeans-token");
+                //window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
+
+        })
+            //.then(() => console.log("Updated review"));
+
+}
+
+document.getElementById('reviews-by-rating-des').addEventListener('click', getReviewsByRatingDes);
+document.getElementById('reviews-by-rating-asc').addEventListener('click', getReviewsByRatingAsc);
+document.getElementById('reviews-by-time-des').addEventListener('click', getReviewsByTimeDes);
+document.getElementById('reviews-by-time-asc').addEventListener('click', getReviewsByTimeAsc);
+document.getElementById("add-review").addEventListener('click', addUpdateReview);
