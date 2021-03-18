@@ -25,26 +25,14 @@ function grabUsername() {
     })
         .then(response => {
             window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
-    })
-        .then(() => redirect());
+            if(response.status < 400 && response.status >= 200){
+                redirect();
+            }
+    });
 }
 
 function redirect(){
-    let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/users';
-    let headers = new Headers();
-
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
-
-    fetch(url, {
-        method: 'GET',
-        headers: headers
-    })
-        .then(response => response.json())
-        .then(result => {
-            console.log('Success:', result);
-    });
+    document.location.href="/SpoiledBeansUI/html/home.html";
 }
 
 function register(){
