@@ -75,3 +75,44 @@ function addMovie(data) {
     });
 
 }
+
+function addNewMovie(){
+
+    let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/movies';
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+
+    //Review data
+    let movie = document.getElementById('movie').value;
+    //let e = document.getElementById("selectNumber");
+    //let ratingNum = e.value;
+    console.log("Did the review get got?: "+ movie);
+
+    //let loginInfo = document.querySelectorAll("input");
+
+    let movieObj = {
+
+        name:movie
+
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(movieObj)
+    })
+        .then(response => {
+            console.log("Added movie");
+            console.log(response);
+            document.getElementById("movie-table-body").innerHTML="";
+            //state.token = response.headers.get("spoiledBeans-token");
+            //window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
+
+        })
+
+        .then(() => getMovies());
+
+}
+document.getElementById("add-movie").addEventListener('click', addNewMovie);

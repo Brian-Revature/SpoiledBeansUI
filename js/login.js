@@ -33,6 +33,7 @@ function grabUsername() {
 
 function redirect(){
     document.location.href="/SpoiledBeansUI/html/home.html";
+    //window.location.href = "./ProfilePage.html";
 }
 
 function register(){

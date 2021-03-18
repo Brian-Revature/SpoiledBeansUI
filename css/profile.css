@@ -1,0 +1,17 @@
+
+
+#userInfo{
+    
+    margin: 5rem 10rem auto 10rem;
+    border: solid black;   
+    text-align: center;
+    width: 100%;
+
+}
+
+
+input{
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    
+}

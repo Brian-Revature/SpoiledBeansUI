@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/profile.css">
+    <title>ProfilePage</title>
+</head>
+<body>
+
+<div id = "header"></div>
+<div id = "userInfo">
+
+    <label for="username">username</label>
+    <input class = "Edit" type="text" id="username" name="username" placeholder="sample username" readonly>
+    <br>
+    <label for="password">password</label>
+    <input class = "Edit" type="password" id="password" name="password" placeholder="sample password" readonly>
+    <br>
+    <label for="email">Email</label>
+    <input class = "Edit" type="email" id="email" name="email" placeholder="sample email" readonly>
+    <br>
+    <label for="firstName">First Name</label>
+    <input class = "Edit" type="text" id="firstName" name="firstName" placeholder="sample first name" readonly>
+    <br>
+    <label for="lastName">Last Name</label>
+    <input class = "Edit" type="text" id="lastName" name="lastName" placeholder="sample last name" readonly>    
+    <br>
+    <label for="bio">Bio</label>
+    <br>
+    <textarea class = "Edit" name="bio" id="bio" cols="30" rows="10" readonly>enter text here</textarea>
+    <!-- <input class = "Edit" type="text" id="Bio" name="Bio" placeholder="sample bio" readonly> -->
+    <br>
+    <p>Role</p>
+    <p id= "userRole">user role placeholder</p>
+
+    <!-- <p>password</p>
+    <p class = "Edit">sample text</p>
+    <p>First Name</p>
+    <p class = "Edit">sample text</p>
+    <p>Last Name</p>
+    <p class = "Edit">sample text</p>
+    <p>Email</p>
+    <p class = "Edit">sample text</p>
+    <p>Bio</p>
+    <p class = "Edit">sample text</p>
+    <p>Role</p>
+    <p id= "role">user role placeholder</p> -->
+    
+    
+    
+
+    <button type="submit" id="begin-edit">Edit</button>
+    <button type="submit" id="end-edit">Done</button>
+    <button type="submit" id = "cancel">Cancel</button>
+</div>
+    <script src="./js/profile.js"></script>
+</body>
+</html>
