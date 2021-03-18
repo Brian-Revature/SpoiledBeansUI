@@ -1,9 +1,6 @@
 
 window.onload = () => {
-    //window.localStorage.getItem('token')
-    console.log(window.localStorage.getItem('token'));
     document.getElementById("profile-page-redirect").addEventListener('click', profilePage);
-
     getMovies();
 }
 
@@ -13,7 +10,7 @@ function getMovies() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
-    headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+    //headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
 
     let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/movies';
 
@@ -23,7 +20,6 @@ function getMovies() {
             })
                 .then(response => response.json())
                 .then(result => {
-                    console.log('Success:', result);
                     addMovie(result);
             });
 
@@ -32,9 +28,7 @@ function getMovies() {
 
 
 function grabMovie(clicked_id){
-
     window.localStorage.setItem('movie', clicked_id);
-    //alert(clicked_id);
 }
 
 
@@ -89,11 +83,7 @@ function addNewMovie(){
 
     //Review data
     let movie = document.getElementById('movie').value;
-    //let e = document.getElementById("selectNumber");
-    //let ratingNum = e.value;
     console.log("Did the review get got?: "+ movie);
-
-    //let loginInfo = document.querySelectorAll("input");
 
     let movieObj = {
 
@@ -110,9 +100,6 @@ function addNewMovie(){
             console.log("Added movie");
             console.log(response);
             document.getElementById("movie-table-body").innerHTML="";
-            //state.token = response.headers.get("spoiledBeans-token");
-            //window.localStorage.setItem('token', response.headers.get("spoiledBeans-token"));
-
         })
 
         .then(() => getMovies());
@@ -122,7 +109,7 @@ document.getElementById("add-movie").addEventListener('click', addNewMovie);
 
 function profilePage(){
     if(localStorage.getItem("token")){
-        window.location.href = "./ProfilePage.html";
+        window.location.href = "./html/ProfilePage.html";
     }
 }
 
