@@ -1,8 +1,9 @@
-let fields = document.getElementsByClassName("Edit");
-let edit_button = document.getElementById("begin-edit");
-let done_button = document.getElementById("end-edit");
-let cancel_button = document.getElementById("cancel");
-let role = document.getElementById('userRole');
+const fields = document.getElementsByClassName("Edit");
+const edit_button = document.getElementById("begin-edit");
+const done_button = document.getElementById("end-edit");
+const cancel_button = document.getElementById("cancel");
+const role = document.getElementById('userRole');
+const reviews_button = document.getElementById('myReviews');
 // gross global variable but needed to save values
 // at least for now
 
@@ -35,6 +36,9 @@ window.onload = () => {
                 }
                 if(key==undefined){
                     element = "";
+                }
+                if(key == "password"){
+                    continue;
                 }
                 fields[key].value = element;
                 console.log(fields[key].value);
@@ -81,8 +85,8 @@ done_button.addEventListener("click", function(){
             bio: backupArray[5],
             Role: role.textContent
         };
-        console.log("here is the user profile");
-        console.log(userProfile);
+        // console.log("here is the user profile");
+        // console.log(userProfile);
         fetch(url, {
             method: 'PUT',
             headers: headers,
@@ -90,11 +94,11 @@ done_button.addEventListener("click", function(){
         })
         .then(Response => {
             window.localStorage.setItem('token', Response.headers.get("spoiledBeans-token"));
-        })
-        .then(() => redirect());
+        });
+        //.then(() => redirect());
 
-        console.log("printing out my backup array but might not get here");
-    console.log(backupArray);
+    //     console.log("printing out my backup array but might not get here");
+    // console.log(backupArray);
 })
 
 cancel_button.addEventListener("click", function(){
@@ -107,8 +111,22 @@ cancel_button.addEventListener("click", function(){
     }
 })
 
-function redirect(){
-    console.log("got to the redirect");
-}
 
 
+// function redirect(){
+//     console.log("got to the redirect");
+// }
+
+// reviews_button.addEventListener("click", function(){
+//     let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/reviews/myreviews';
+//     let headers = new Headers();
+//     headers.append('Content-Type', 'application/json');
+//     headers.append('Accept', 'application/json');
+//     headers.append('spoiledBeans-token', window.localStorage.getItem('token'));    
+    
+//     fetch(url, {
+//         method: 'GET',
+//         headers: headers
+//     })
+//     .then()
+// })
