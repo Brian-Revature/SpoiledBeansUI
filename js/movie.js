@@ -306,22 +306,13 @@ function addReviewsToTable(data) {
 
             let row1 = document.createElement('tr')
             //User will be an anchor to user's profile
-            //let userAnchor = document.createElement('a')
             let cellUser = document.createElement('td');
             let cellMovie = document.createElement('td');
             let cellRating = document.createElement('td');
             let cellReview = document.createElement('td');
             let cellReviewTime = document.createElement('td');
 
-
-            //Anchor for movie name
-            // userAnchor.href = './index.html';
-            // userAnchor.id = userArr[i];
-            // //Method to get name of clicked user
-            // userAnchor.addEventListener("click",() =>  grabUser(event.srcElement.id));
-            //
             // //Populating with values
-            // userAnchor.innerText = userArr[i];
             cellUser.innerText = userArr[i];
             cellMovie.innerText = movieName;
             cellRating.innerText = reviewInfoArr[i].rating;

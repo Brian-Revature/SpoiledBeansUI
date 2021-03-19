@@ -11,6 +11,49 @@
 </head>
 <body>
 
+<h5>Favorite Movies</h5>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th>Movie Name</th>
+            <th>Movie Genre</th>
+            <th>Movie Director</th>
+            <th>Movie Year</th>
+            <th>Movie Synopsis</th>
+        </tr>
+        </thead>
+        <tbody id="movie-table-body">
+
+        </tbody>
+    </table>
+</div>
+<div class="form-signin">
+    <div>
+        <label for="add-movie-text"></label>
+        <h5>Add or Delete Favorite Movie</h5>
+        <input class = "form-control" type="text" id="add-movie-text" name="add-movie-text" placeholder="Movie name">
+        <button type="submit" class="btn add-delete" id="add">Add Movie</button>
+        <button type="submit" class="btn add-delete" id="delete">Delete Movie</button>
+    </div>
+</div>
+
+<h5>User Reviews</h5>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Rating</th>
+            <th>Review</th>
+            <th>Review Time</th>
+        </tr>
+        </thead>
+        <tbody id="review-table-body">
+        </tbody>
+    </table>
+</div>
+
 <div id = "header">
 <main class="form-signin">
 
