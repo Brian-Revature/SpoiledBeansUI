@@ -137,7 +137,7 @@ function addReview(data){
 
     let movieName = data.movies;
     let reviews = data.reviews;
-    
+
     for(let i=0;i<reviews.length;i++){
 
         let row1 = document.createElement('tr')
@@ -178,12 +178,12 @@ function getFavorites(){
     })
         .then(response => response.json())
         .then(result => {
-            addMovie(result);
+            addFavMovies(result);
         });
 
 }
 
-function addMovie(data){
+function addFavMovies(data){
 
     let favorites = data.favorites;
     for (let element of favorites) {
@@ -199,7 +199,8 @@ function addMovie(data){
         movieAnchor.href = '../html/movie.html';
         movieAnchor.id = element.name;
         //Get name of clicked movie
-        movieAnchor.addEventListener("click",() =>  grabMovie(event.srcElement.id));
+        console.log(element.id + " " + element.name);
+        movieAnchor.addEventListener("click",() =>  grabMovie(element.name));
 
 
         //Populating with values
@@ -219,6 +220,11 @@ function addMovie(data){
     }
 
 }
+function grabMovie(clicked_id){
+    console.log(clicked_id);
+    window.localStorage.setItem('movie', clicked_id);
+}
+
 add_movie.addEventListener('click', function addMovieToFavorite(){
 
     let url = 'http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/users/addfavorite';

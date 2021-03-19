@@ -1,6 +1,5 @@
 
 window.onload = () => {
-    console.log(window.localStorage.getItem('movie'));
     getAllMovies();
     getReviews();
     //getMyReviews();
@@ -23,7 +22,6 @@ function getAllMovies() {
             })
                 .then(response => response.json())
                 .then(result => {
-                    console.log('Success:', result);
                     //addMoviesToDropdown(result);
                     addSingleMovieToMovieDetails(result);
             });
@@ -55,7 +53,6 @@ function getReviews(){
                 })
                     .then(response => response.json())
                     .then(result => {
-                        console.log('Success:', result);
                         addReviewsToTable(result);
                 });
 
@@ -105,7 +102,6 @@ function getReviewsByRatingDes(){
                 })
                     .then(response => response.json())
                     .then(result => {
-                        console.log('Success:', result);
                         addReviewsToTable(result);
                 });
 
@@ -139,7 +135,6 @@ function getReviewsByRatingAsc(){
                 })
                     .then(response => response.json())
                     .then(result => {
-                        console.log('Success:', result);
                         addReviewsToTable(result);
                 });
 
@@ -170,7 +165,6 @@ function getReviewsByTimeDes(){
                 })
                     .then(response => response.json())
                     .then(result => {
-                        console.log('Success:', result);
                         addReviewsToTable(result);
                 });
 
@@ -205,7 +199,6 @@ function getReviewsByTimeAsc(){
                 })
                     .then(response => response.json())
                     .then(result => {
-                        console.log('Success:', result);
                         addReviewsToTable(result);
                 });
 
@@ -277,7 +270,6 @@ function addReviewsToTable(data) {
         let movieName;
 
         Object.keys(data).forEach(key => {
-            console.log(key + ' - ' + data[key])
             if(key=="movie"){
                 console.log("This is the movie: " + data[key]);
                 movieName = data[key];
@@ -296,10 +288,6 @@ function addReviewsToTable(data) {
                             })
                         }
         })
-
-        console.log(reviewInfoArr);
-        console.log(userArr);
-        console.log(movieName);
 
         let i;
         for(i=0;i<userArr.length;i++){
@@ -339,7 +327,6 @@ function addReviewsToMyTable(data) {
         let movieName;
 
         Object.keys(data).forEach(key => {
-            console.log(key + ' - ' + data[key])
             if(key=="movie"){
                 console.log("This is the movie: " + data[key]);
                 movieName = data[key];
@@ -358,10 +345,6 @@ function addReviewsToMyTable(data) {
                             })
                         }
         })
-
-        console.log(reviewInfoArr);
-        console.log(userArr);
-        console.log(movieName);
 
         let i;
         for(i=0;i<userArr.length;i++){
