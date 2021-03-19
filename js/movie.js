@@ -1,6 +1,6 @@
 
 window.onload = () => {
-    getAllMovies();
+    //getAllMovies();
     getReviews();
     //getMyReviews();
 }
@@ -228,11 +228,34 @@ function getMyReviews(){
 
 }
 
-function addSingleMovieToMovieDetails(data) {
+async function addSingleMovieToMovieDetails(data) {
+    document.getElementById('movie-table-body').innerHTML = "";
 
-    data.forEach(element => {
+
+    for (const element of data) {
 
         if(element.name==window.localStorage.getItem('movie')){
+
+            let overallRating;
+
+            let headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            headers.append('Accept', 'application/json');
+            headers.append('spoiledBeans-token', window.localStorage.getItem('token'));
+
+
+            let url = new URL('http://Spoiledbeansapi-env.eba-mnv79iji.us-east-2.elasticbeanstalk.com/movies/name')
+            url.search = new URLSearchParams({
+                name: element.name
+            })
+            await fetch(url, {
+                method: 'GET',
+                headers: headers,
+            })
+                .then(response => response.json())
+                .then(result => {
+                    overallRating = result.rating;
+                });
 
             //Creating elements
             let row1 = document.createElement('tr')
@@ -241,6 +264,7 @@ function addSingleMovieToMovieDetails(data) {
             let cellDirector = document.createElement('td');
             let cellYear = document.createElement('td');
             let cellSynopsis = document.createElement('td');
+            let cellRating = document.createElement('td');
 
 
             //Populating with values
@@ -249,6 +273,7 @@ function addSingleMovieToMovieDetails(data) {
             cellGenre.innerText = element.genre;
             cellYear.innerText = element.year;
             cellSynopsis.innerText = element.synopsis;
+            cellRating.innerText = overallRating.toFixed(1) + "/5.0";
 
             //Appending to html
             row1.appendChild(cellName);
@@ -256,10 +281,12 @@ function addSingleMovieToMovieDetails(data) {
             row1.appendChild(cellDirector);
             row1.appendChild(cellYear);
             row1.appendChild(cellSynopsis);
+            row1.appendChild(cellRating);
             document.getElementById('movie-table-body').appendChild(row1);
 
         }
-    });
+
+    }
 
 }
 
@@ -316,6 +343,8 @@ function addReviewsToTable(data) {
             document.getElementById('review-table-body').appendChild(row1);
 
         }
+
+        getAllMovies();
 
 }
 
@@ -400,6 +429,7 @@ function addUpdateReview(){
     let e = document.getElementById("selectNumber");
     let ratingNum = e.value;
     console.log("Did the review get got?: "+ reviewText);
+    document.getElementById('review').innerText = "";
 
     //let loginInfo = document.querySelectorAll("input");
 
